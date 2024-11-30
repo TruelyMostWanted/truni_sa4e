@@ -4,10 +4,17 @@
 This project is a simulation of fireflies' behavior, supporting both singleplayer and multiplayer modes. The simulation involves initializing a grid of fireflies and synchronizing their phases to simulate group behavior. In multiplayer mode, both server and clients are connected as fireflies, and their phases are synchronized across the network.
 
 ## Table of Contents
+0. Requirements
 1. Structure
 2. Classes, Attributes, and Methods
 3. Execution Order
 4. Additional Information
+
+## 0. Requirements
+To run this project on your own machine, you need:
+- Godot Engine 4.4-dev5 or higher: https://godotengine.org/article/dev-snapshot-godot-4-4-dev-5/
+- .NET SDK 9.0: https://dotnet.microsoft.com/en-us/download
+- .NET 9 Runtime: https://dotnet.microsoft.com/en-us/download/dotnet/9.0
 
 ## 1. Structure
 The project is structured to support both singleplayer and multiplayer modes. The main entry point is the `Application` class, which initializes and configures the simulation based on the mode selected.
