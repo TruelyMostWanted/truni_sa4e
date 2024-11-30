@@ -33,6 +33,11 @@ public partial class MultiplayerApp : Node
 	//RENDERER
 	[Export] public FireflyInstanceRenderer2D FireflyRenderer { get; private set; }
 	
+	public void SetVisible(bool isVisible)
+	{
+		FireflyRenderer.Visible = isVisible;
+	}
+	
 	
 	public void RequestAssignPeer(long peerId, out int fireflyId, out Vector2I fireflyIndex)
 	{

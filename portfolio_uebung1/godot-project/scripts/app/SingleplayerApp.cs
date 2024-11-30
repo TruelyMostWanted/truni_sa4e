@@ -10,6 +10,11 @@ public partial class SingleplayerApp : Node
     [Export] public FireflyStructGridNode2D FireflyGrid { get; private set; }
     [Export] public FireflyGridRenderer2D FireflyGridRenderer { get; private set; }
 
+    public void SetVisible(bool isVisible)
+    {
+        FireflyGridRenderer.Visible = isVisible;
+    }
+
     public void Main(int gridWidth, int gridHeight, bool isTorus = true, double coupling = 0.1)
     {
         //(1) Initialize the fireflies

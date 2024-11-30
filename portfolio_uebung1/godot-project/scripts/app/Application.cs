@@ -69,14 +69,15 @@ public partial class Application : Node
             gridHeight = DefaultGridHeight;
 
         // (4) Start the offline or online app
+        SingleplayerApp.SetVisible(!isOnline);
+        MultiplayerApp.SetVisible(isOnline);
+        IsOnlineEnabled = isOnline;
         if (!isOnline)
         {
-            IsOnlineEnabled = false;
             SingleplayerApp.Main(gridWidth, gridHeight, true, DefaultCoupling);
         }
         else
         {
-            IsOnlineEnabled = true;
             isServer = !canGetIsServer || isServer;
             MultiplayerApp.Main(gridWidth, gridHeight, true, DefaultCoupling, isServer);
         }
