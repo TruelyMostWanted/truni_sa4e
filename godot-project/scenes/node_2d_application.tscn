@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5wne0s00gf86"]
+
+[ext_resource type="Script" uid="uid://cpaf6r78p381r" path="res://scripts/app/Application.cs" id="1_mjski"]
+[ext_resource type="Script" uid="uid://rjoq2rre5u6w" path="res://scripts/app/SingleplayerApp.cs" id="2_glphj"]
+[ext_resource type="Script" uid="uid://wrl50yq48ejn" path="res://scripts/fireflies/FireflyStructGridNode2D.cs" id="2_mjski"]
+[ext_resource type="Script" uid="uid://btkht0vfwo7s1" path="res://scripts/app/MultiplayerApp.cs" id="3_mjski"]
+[ext_resource type="Script" uid="uid://csdlhb8lvf44r" path="res://scripts/renderer/FireflyInstanceRenderer2D.cs" id="5_nyq0t"]
+[ext_resource type="Script" uid="uid://bnmf70pyamn0m" path="res://scripts/renderer/FireflyGridRenderer2D.cs" id="6_ynbll"]
+
+[sub_resource type="Resource" id="Resource_vf2y5"]
+metadata/__load_path__ = "res://scripts/mp/MultiplayerApp.cs"
+
+[node name="Node2D_Application" type="Node" node_paths=PackedStringArray("SingleplayerApp", "MultiplayerApp")]
+script = ExtResource("1_mjski")
+SingleplayerApp = NodePath("SingleplayerApp")
+MultiplayerApp = NodePath("MultiplayerApp")
+
+[node name="SingleplayerApp" type="Node" parent="." node_paths=PackedStringArray("FireflyGrid", "FireflyGridRenderer")]
+script = ExtResource("2_glphj")
+FireflyGrid = NodePath("../FireflyStructGrid")
+FireflyGridRenderer = NodePath("../FireflyGridRenderer2D")
+metadata/_custom_type_script = ExtResource("2_glphj")
+
+[node name="MultiplayerApp" type="Node" parent="." node_paths=PackedStringArray("FireflyGrid", "FireflyRenderer")]
+script = ExtResource("3_mjski")
+ServerAddress = "127.0.0.1"
+ServerPort = 9000
+FireflyGrid = NodePath("../FireflyStructGrid")
+FireflyRenderer = NodePath("../FireflyInstanceRenderer2D")
+metadata/_custom_type_script = SubResource("Resource_vf2y5")
+
+[node name="FireflyStructGrid" type="Node2D" parent="."]
+script = ExtResource("2_mjski")
+metadata/_custom_type_script = ExtResource("2_mjski")
+
+[node name="FireflyInstanceRenderer2D" type="Node2D" parent="." node_paths=PackedStringArray("FireflyGrid")]
+script = ExtResource("5_nyq0t")
+FireflyColor = Color(1, 0.733333, 0, 1)
+FireflyGrid = NodePath("../FireflyStructGrid")
+metadata/_custom_type_script = ExtResource("5_nyq0t")
+
+[node name="FireflyGridRenderer2D" type="Node2D" parent="." node_paths=PackedStringArray("FireflyGrid")]
+visible = false
+script = ExtResource("6_ynbll")
+FireflyColor = Color(1, 0.733333, 0, 1)
+FireflyGrid = NodePath("../FireflyStructGrid")
+metadata/_custom_type_script = ExtResource("6_ynbll")
