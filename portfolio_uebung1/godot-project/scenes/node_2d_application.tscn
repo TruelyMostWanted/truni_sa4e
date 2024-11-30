@@ -40,7 +40,6 @@ FireflyGrid = NodePath("../FireflyStructGrid")
 metadata/_custom_type_script = ExtResource("5_nyq0t")
 
 [node name="FireflyGridRenderer2D" type="Node2D" parent="." node_paths=PackedStringArray("FireflyGrid")]
-visible = false
 script = ExtResource("6_ynbll")
 FireflyColor = Color(1, 0.733333, 0, 1)
 FireflyGrid = NodePath("../FireflyStructGrid")
