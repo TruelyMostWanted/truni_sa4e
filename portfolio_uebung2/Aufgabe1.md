@@ -57,7 +57,7 @@ Die MySQL-Datenbank speichert alle Wünsche in einer relationalen Struktur.
 
 **Tabelle:**
 - **Wishes**
-    - `Id` (UUID): Eindeutige ID für jeden Wunsch.
+    - `Id` (UUID / INT): Eindeutige ID für jeden Wunsch.
     - `Description` (Text): Beschreibung des Wunsches.
     - `Status` (Enum): Status des Wunsches (z. B. `Formulated`, `InProgress`, `Delivering`, `UnderTree`).
 
@@ -70,13 +70,13 @@ Die MySQL-Datenbank speichert alle Wünsche in einer relationalen Struktur.
 Das zentrale Modell zur Repräsentation eines Wunsches.
 - `Id`: Eindeutige Kennung.
 - `Description`: Beschreibung des Wunsches.
+- `FileName`: Dateiname/Pfad falls der Wunsch in einer Datei steht
 - `Status`: Aktueller Status des Wunsches.
 
 ### ValidationRequest
 Datenstruktur zur Validierung von Anfragen.
 - `AccessToken`: Token zur Authentifizierung des Clients.
 - `Wish`: Der Wunsch, der validiert werden soll.
-- `Method`: HTTP-Methode der Anfrage (GET, POST, etc.).
 
 ### ValidationResponse
 Antwortstruktur des Auth/Validator-Dienstes.
