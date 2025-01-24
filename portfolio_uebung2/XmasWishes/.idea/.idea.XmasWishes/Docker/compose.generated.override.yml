@@ -1,0 +1,63 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.8"
+services:
+  xmaswishes-api-gateway:
+    build:
+      context: "P:\\Projects\\.NET\\XmasWishes"
+      dockerfile: "XmasWishes/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/XmasWishes.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net9.0/XmasWishes.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "xmaswishes-api-gateway:dev"
+    ports: []
+    volumes:
+    - "P:\\Projects\\.NET\\XmasWishes\\XmasWishes:/app:rw"
+    - "P:\\Projects\\.NET\\XmasWishes:/src:rw"
+    - "C:\\Users\\larsc\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  xmaswishes-data-service:
+    build:
+      context: "P:\\Projects\\.NET\\XmasWishes"
+      dockerfile: "XmasWishes/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/XmasWishes.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net9.0/XmasWishes.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "xmaswishes-data-service:dev"
+    ports: []
+    volumes:
+    - "P:\\Projects\\.NET\\XmasWishes\\XmasWishes:/app:rw"
+    - "P:\\Projects\\.NET\\XmasWishes:/src:rw"
+    - "C:\\Users\\larsc\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  xmaswishes-validator:
+    build:
+      context: "P:\\Projects\\.NET\\XmasWishes"
+      dockerfile: "XmasWishes/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/XmasWishes.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net9.0/XmasWishes.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "xmaswishes-validator:dev"
+    ports: []
+    volumes:
+    - "P:\\Projects\\.NET\\XmasWishes\\XmasWishes:/app:rw"
+    - "P:\\Projects\\.NET\\XmasWishes:/src:rw"
+    - "C:\\Users\\larsc\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
