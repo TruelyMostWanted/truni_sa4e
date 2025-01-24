@@ -1,0 +1,7 @@
+### Einfügen eines neuen Wunsches
+POST http://localhost:8080/api/wishes
+Content-Type: application/json
+
+{
+  "description": "Ich wünsche mir eine neue Xbox"
+}

@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Make a Wish";
+}
+
+<h1>Make a Wish</h1>
+
+<div class="section">
+    <h2>Submit Wish by Image</h2>
+    <input type="file" id="imageInput" accept="image/*" style="display:none;">
+    <label for="imageInput" class="btn btn-primary">Choose Image</label>
+    <span id="fileName">No file chosen</span>
+    <br><br>
+    <button class="btn btn-success" onclick="submitImageWish()">Send</button>
+</div>
+
+<div class="section">
+    <h2>Submit Wish by Text</h2>
+    <textarea id="textWish" maxlength="500" class="form-control" placeholder="Enter your wish here..."></textarea>
+    <br><br>
+    <button class="btn btn-success" onclick="submitTextWish()">Send</button>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function() {
+            var fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+            document.getElementById('fileName').textContent = fileName;
+        });
+
+        async function submitImageWish() {
+            var fileInput = document.getElementById('imageInput');
+            if (fileInput.files.length === 0) {
+                alert('Please choose an image file.');
+                return;
+            }
+            var file = fileInput.files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                let response = await fetch('/api/requests', {
+                    method: 'POST',
+                    body: formData
+                });
+                let result = await response.json();
+                alert('Image wish submitted: ' + result.message);
+            } catch (error) {
+                alert('Error submitting image wish: ' + error.message);
+            }
+        }
+
+        async function submitTextWish() {
+            var textWish = document.getElementById('textWish').value;
+            if (textWish.trim() === '') {
+                alert('Please enter your wish.');
+                return;
+            }
+
+            var wishRequest = {
+                description: textWish
+            };
+
+            try {
+                let response = await fetch('/api/requests', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(wishRequest)
+                });
+                let result = await response.json();
+                alert('Text wish submitted: ' + result.message);
+            } catch (error) {
+                alert('Error submitting text wish: ' + error.message);
+            }
+        }
+    </script>
+}
