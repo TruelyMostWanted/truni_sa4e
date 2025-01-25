@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\XmasWishes.csproj": {}
+    "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\XmasWishes.csproj": {}
   },
   "projects": {
-    "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\XmasWishes.csproj": {
+    "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\XmasWishes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\XmasWishes.csproj",
+        "projectUniqueName": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\XmasWishes.csproj",
         "projectName": "XmasWishes",
-        "projectPath": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\XmasWishes.csproj",
+        "projectPath": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\XmasWishes.csproj",
         "packagesPath": "C:\\Users\\larsc\\.nuget\\packages\\",
-        "outputPath": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\obj\\",
+        "outputPath": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\larsc\\AppData\\Roaming\\NuGet\\NuGet.Config"

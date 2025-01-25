@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WnFnWtOTW/k=",
+  "dgSpecHash": "yRTBQpeB+NA=",
   "success": true,
-  "projectFilePath": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\XmasWishes.csproj",
+  "projectFilePath": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\XmasWishes.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\larsc\\.nuget\\packages\\bouncycastle.cryptography\\2.3.1\\bouncycastle.cryptography.2.3.1.nupkg.sha512",
     "C:\\Users\\larsc\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512",
