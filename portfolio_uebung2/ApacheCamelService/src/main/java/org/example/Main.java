@@ -4,6 +4,8 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 
 public class Main {
+    public static boolean keepRunning = true;
+
     public static void main(String[] args) throws Exception {
         //(1) Create a new CamelContext
         CamelContext context = new DefaultCamelContext();
@@ -16,5 +18,10 @@ public class Main {
 
         //(4) Print a "START" message to the console
         System.out.println("Microservice from Apache-Camel started!");
+
+        //(5) Keep the application running
+        while (keepRunning) {
+            Thread.sleep(10_000);
+        }
     }
 }
