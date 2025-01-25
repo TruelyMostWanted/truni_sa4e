@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # API Gateway Service (Container 1)
+  xmaswishes-api-gateway:
+    image: xmaswishes-api-gateway
+    build:
+      context: ./XmasWishes
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"  # Host-Port:Container-Port
+    depends_on:
+      - xmaswishes-validator
+      - xmaswishes-db
+    networks:
+      xmaswishes-net:
+        ipv4_address: 172.19.0.10
+
+  # Validator Service (Container 2)
+  xmaswishes-validator:
+    image: xmaswishes-validator
+    build:
+      context: ./XmasWishes
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"  # Host-Port:Container-Port
+    networks:
+      xmaswishes-net:
+        ipv4_address: 172.19.0.11
+
+  # Data Service (Container 3)
+  xmaswishes-data-service:
+    image: xmaswishes-data-service
+    build:
+      context: ./XmasWishes
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"  # Host-Port:Container-Port
+    depends_on:
+      - xmaswishes-db
+    networks:
+      xmaswishes-net:
+        ipv4_address: 172.19.0.12
+
+  # MySQL Datenbank (Container 4)
+  xmaswishes-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # Setzt das Root Passwort für MySQL
+      MYSQL_DATABASE: xmaswishes_db    # Name der Datenbank, die beim Start erstellt wird
+    ports:
+      - "3306:3306"  # Host-Port:Container-Port
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persistente Speicherung der Daten
+    restart: always
+    networks:
+      xmaswishes-net:
+        ipv4_address: 172.19.0.13
+
+  # Apache Camel Service (Container 5)
+  apache-camel-service:
+    image: apache-camel-service
+    build:
+      context: ./ApacheCamelService
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8080"  # Host-Port:Container-Port
+    networks:
+      xmaswishes-net:
+        ipv4_address: 172.19.0.14
+
+networks:
+  xmaswishes-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+
+volumes:
+  mysql-data:  # Volumen für MySQL-Datenbank
