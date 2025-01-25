@@ -18,9 +18,9 @@ Dieses Konzept beschreibt die Architektur und das Design einer Microservices-bas
 Das API Gateway ist der zentrale Einstiegspunkt für alle Client-Anfragen und koordiniert die Kommunikation zwischen den verschiedenen Diensten.
 
 **Endpunkte:**
-- `GET /api/requests/get-all`: Liefert alle Wünsche aus der Datenbank.
-- `POST /api/requests/add-wish`: Fügt einen neuen Wunsch hinzu.
-- `POST /api/requests/add-wish-img`: Fügt einen neuen Wunsch mit Bild hinzu.
+- `GET /api/requests/`: Liefert alle Wünsche aus der Datenbank.
+- `POST /api/requests/`: Fügt einen neuen Wunsch hinzu.
+- `POST /api/requests/`: Fügt einen neuen Wunsch mit einer Datei hinzu.
 
 **Funktionen:**
 - Routing und Weiterleitung von Anfragen an die entsprechenden Dienste.
@@ -57,7 +57,7 @@ Die MySQL-Datenbank speichert alle Wünsche in einer relationalen Struktur.
 
 **Tabelle:**
 - **Wishes**
-    - `Id` (UUID): Eindeutige ID für jeden Wunsch.
+    - `Id` (UUID / INT): Eindeutige ID für jeden Wunsch.
     - `Description` (Text): Beschreibung des Wunsches.
     - `Status` (Enum): Status des Wunsches (z. B. `Formulated`, `InProgress`, `Delivering`, `UnderTree`).
 
@@ -70,13 +70,13 @@ Die MySQL-Datenbank speichert alle Wünsche in einer relationalen Struktur.
 Das zentrale Modell zur Repräsentation eines Wunsches.
 - `Id`: Eindeutige Kennung.
 - `Description`: Beschreibung des Wunsches.
+- `FileName`: Dateiname/Pfad falls der Wunsch in einer Datei steht
 - `Status`: Aktueller Status des Wunsches.
 
 ### ValidationRequest
 Datenstruktur zur Validierung von Anfragen.
 - `AccessToken`: Token zur Authentifizierung des Clients.
 - `Wish`: Der Wunsch, der validiert werden soll.
-- `Method`: HTTP-Methode der Anfrage (GET, POST, etc.).
 
 ### ValidationResponse
 Antwortstruktur des Auth/Validator-Dienstes.
