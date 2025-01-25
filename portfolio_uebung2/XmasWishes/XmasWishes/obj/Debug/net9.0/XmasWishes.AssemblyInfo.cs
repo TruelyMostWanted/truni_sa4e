@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("XmasWishes")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2028bef6b2119c1dc9846e205d933ca2ba325539")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2d08128b4c7c3781f01689001a7708f55ec5594")]
 [assembly: System.Reflection.AssemblyProductAttribute("XmasWishes")]
 [assembly: System.Reflection.AssemblyTitleAttribute("XmasWishes")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

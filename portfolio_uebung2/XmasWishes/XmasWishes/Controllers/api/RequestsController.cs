@@ -66,6 +66,8 @@ public class RequestsController : ControllerBase
         var dataServiceTask = _httpClient.GetAsync(_wishesEndpoint);
         dataServiceTask.Wait();
         var dataServiceResponse = dataServiceTask.Result;
+        Console.WriteLine(dataServiceResponse);
+        
         
         Console.WriteLine("GET-WISHES (4)");
         var resultTask = dataServiceResponse.Content.ReadAsStringAsync();
@@ -73,6 +75,7 @@ public class RequestsController : ControllerBase
         var result = resultTask.Result;
         Console.WriteLine(result);
 
+        
         Console.WriteLine("GET-WISHES (5)");
         return Ok(JsonSerializer.Deserialize<object>(result));
     }

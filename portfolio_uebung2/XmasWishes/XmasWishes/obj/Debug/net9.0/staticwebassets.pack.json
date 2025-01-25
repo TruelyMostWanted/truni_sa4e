@@ -1,259 +1,259 @@
 {
   "Files": [
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\XmasWishes.bundle.scp.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\XmasWishes.bundle.scp.css",
       "PackagePath": "staticwebassets\\XmasWishes.yvb09ttnk3.bundle.scp.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\css\\site.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\favicon.ico",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\js\\site.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.slim.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.slim.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.js",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.js"
     },
     {
-      "Id": "P:\\Projects\\.NET\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
+      "Id": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung2\\XmasWishes\\XmasWishes\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
     },
     {

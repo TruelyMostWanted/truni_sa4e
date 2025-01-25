@@ -13,8 +13,11 @@ namespace XmasWishes.Models.wishes
             var entity = modelBuilder.Entity<Wish>();
 
             entity.Property(w => w.Description)
-                .HasMaxLength(256)
+                .HasMaxLength(500)
                 .IsRequired();
+
+            entity.Property(w => w.FileName)
+                .HasMaxLength(100);
 
             entity.Property(w => w.Status)
                 .IsRequired();

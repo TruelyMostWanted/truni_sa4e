@@ -20,23 +20,31 @@ namespace XmasWishes.Controllers
         [HttpGet]
         public IActionResult GetAllWishes()
         {
-            Console.WriteLine(_dbContext != null);
+            try
+            {
+                Console.WriteLine(_dbContext != null);
             
-            var connStr = _dbContext.Database.GetConnectionString();
-            Console.WriteLine($"Connection String: {connStr}");
+                var connStr = _dbContext.Database.GetConnectionString();
+                Console.WriteLine($"Connection String: {connStr}");
             
             
-            Console.WriteLine("(1) GetAllWishes");
-            // if (string.IsNullOrEmpty(accessToken))
-            //     return Ok("AccessToken is required.");
+                Console.WriteLine("(1) GetAllWishes");
+                // if (string.IsNullOrEmpty(accessToken))
+                //     return Ok("AccessToken is required.");
 
-            Console.WriteLine("(2) GetAllWishes");
-            var wishesListTask = _dbContext.Wishes.ToListAsync();
-            wishesListTask.Wait();
+                Console.WriteLine("(2) GetAllWishes");
+                var wishesListTask = _dbContext.Wishes.ToListAsync();
+                wishesListTask.Wait();
 
-            Console.WriteLine("(3) GetAllWishes");
-            var wishes = wishesListTask.Result;
-            return Ok(wishes);
+                Console.WriteLine("(3) GetAllWishes");
+                var wishes = wishesListTask.Result;
+                return Ok(wishes);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, $"An error occurred while processing your request: {e.Message}");
+            }
         }
 
         [HttpPost]
