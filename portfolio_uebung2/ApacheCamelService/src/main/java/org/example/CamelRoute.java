@@ -15,23 +15,27 @@ public class CamelRoute extends RouteBuilder {
 
     private void processExchange(org.apache.camel.Exchange exchange) throws IOException
     {
+        //(1) Define the filename
         String filename = exchange.getIn().getHeader("CamelFileName", String.class);
 
-        // OCR mit Tesseract ausführen (ORC = Optical Character Recognition)
+        //(2) Perform OCR (Optical Character Recognition) with Tesseract
         ProcessBuilder pb = new ProcessBuilder("tesseract", "input/" + filename, "stdout");
         pb.redirectErrorStream(true);
+
+        //(3) Start the process and read the output
         Process process = pb.start();
         String text = new String(process.getInputStream().readAllBytes());
 
-        // JSON für wish-processing-service erstellen
+        //(4) Create a JSON object
         Map<String, Object> jsonMap = new HashMap<>();
-        jsonMap.put("filename", filename);
-        jsonMap.put("extracted_text", text);
+        jsonMap.put("FileName", filename);
+        jsonMap.put("Description", text);
 
-        // JSON an Python-Processing-Service senden
+        //(5) Convert the JSON object to a string
         String jsonOutput = new ObjectMapper().writeValueAsString(jsonMap);
-        trySendWishFromImageRequest(jsonOutput);
 
+        //(6) Send the JSON object to the API
+        trySendWishFromImageRequest(jsonOutput);
         exchange.getIn().setBody(jsonOutput);
     }
 
@@ -45,16 +49,29 @@ public class CamelRoute extends RouteBuilder {
                 .log("Running");
     }
 
-    private void trySendWishFromImageRequest(String jsonPayload) {
-        try (CloseableHttpClient client = HttpClients.createDefault()) {
-            HttpPost httpPost = new HttpPost("http://wish-storage-service:8003/receive-image/");  // Fix: URL angepasst
+    private void trySendWishFromImageRequest(String jsonPayload)
+    {
+        //(1) Create a new HTTP client
+        try (CloseableHttpClient client = HttpClients.createDefault())
+        {
+            //(2) Define the URL
+            String postApiUrl = "http://172.19.0.10:8080/api/requests";
+
+            //(3) Create a new HTTP POST request
+            HttpPost httpPost = new HttpPost(postApiUrl);
             httpPost.setEntity(new StringEntity(jsonPayload));
             httpPost.setHeader("Content-Type", "application/json");
 
+            //(4) Execute the request
             client.execute(httpPost);
-            System.out.println("OCR-Daten an wish-storage-service gesendet.");
-        } catch (Exception e) {
-            System.err.println("Fehler beim Senden an wish-storage-service: " + e.getMessage());
+
+            //(5) Print a success message to the Console
+            System.out.println("Sending POST-Request to API using data loaded from file");
+        }
+        catch (Exception e)
+        {
+            //(6) On ERROR: Print an error message to the Console
+            System.out.println("ERROR: Failed to send POST-Request to API: " + e.getMessage());
         }
     }
 }
