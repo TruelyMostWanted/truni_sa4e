@@ -19,8 +19,8 @@ Das API Gateway ist der zentrale Einstiegspunkt für alle Client-Anfragen und ko
 
 **Endpunkte:**
 - `GET /api/requests/`: Liefert alle Wünsche aus der Datenbank.
-- `POST /api/requests/`: Fügt einen neuen Wunsch hinzu.
-- `POST /api/requests/`: Fügt einen neuen Wunsch mit einer Datei hinzu.
+- `POST /api/requests/`: Fügt einen neuen Wunsch hinzu. { "Description": Wunschtext }
+- `POST /api/requests/`: Fügt einen neuen Wunsch mit einer Datei hinzu. { "Description": Wunschtext, "FileName": "" }
 
 **Funktionen:**
 - Routing und Weiterleitung von Anfragen an die entsprechenden Dienste.
@@ -57,8 +57,9 @@ Die MySQL-Datenbank speichert alle Wünsche in einer relationalen Struktur.
 
 **Tabelle:**
 - **Wishes**
-    - `Id` (UUID / INT): Eindeutige ID für jeden Wunsch.
+    - `Id` (INT): Eindeutige ID für jeden Wunsch.
     - `Description` (Text): Beschreibung des Wunsches.
+	- `FileName` (Text): Wird der Wunsch als Datei gespeichert? Wo?
     - `Status` (Enum): Status des Wunsches (z. B. `Formulated`, `InProgress`, `Delivering`, `UnderTree`).
 
 **Funktionen:**
