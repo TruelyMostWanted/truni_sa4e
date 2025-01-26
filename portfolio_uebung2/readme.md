@@ -19,6 +19,10 @@
 ```
 mysql -h localhost -P 3306 -u root -p xmaswishes_db < initialize.sql
 ```
+Das Passwort ist:
+```
+rootpassword
+```
 
 4) Starten sie einen der Tests
 z.B /tests/AddWish.http
