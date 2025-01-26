@@ -1,0 +1,7 @@
+﻿//perform a POST REQUEST to http://localhost:8080/api/requests, adding one wish
+POST http://localhost:8080/api/Requests
+Content-Type: application/json
+
+{
+  "description": "Ich wünsche mir eine neue Xbox"
+}

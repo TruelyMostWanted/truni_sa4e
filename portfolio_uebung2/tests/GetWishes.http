@@ -1,0 +1,3 @@
+﻿//perform a POST REQUEST to http://localhost:8080/api/requests, adding one wish
+GET http://localhost:8080/api/requests
+Content-Type: application/json
