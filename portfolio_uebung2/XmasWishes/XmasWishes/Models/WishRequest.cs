@@ -4,14 +4,15 @@ namespace XmasWishes.Models;
 
 public class WishRequest
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Id { get; set; }
     public string Description { get; set; }
-    public Wish.StatusEnum Status { get; set; } = Wish.StatusEnum.Formulated;
+    public string FileName { get; set; }
+    public string Status { get; set; } = Wish.StatusEnum.Formulated.ToString();
 
-    public WishRequest(string description, Wish.StatusEnum status)
+    public WishRequest(string description, string fileName)
     {
         Description = description;
-        Status = status;
+        FileName = fileName;
     }
 
     public WishRequest()
