@@ -83,7 +83,7 @@ Datenstruktur zur Validierung von Anfragen.
 Antwortstruktur des Auth/Validator-Dienstes.
 - `IsValid`: Gibt an, ob die Anfrage gültig ist.
 - `Message`: Zusätzliche Informationen zur Validierung.
-- `ValidatedWish`: (Opti[Aufgabe2.md](Aufgabe2.md)onal) Validierte Wunschdaten.
+- `ValidatedWish`: (Optional) Validierte Wunschdaten.
 
 ## Ablaufdiagramm (Pseudocode)
 1. **Client sendet Anfrage an API Gateway.**
