@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "NwP0j+UXL1A=",
+  "success": true,
+  "projectFilePath": "P:\\Projects\\GitHub\\truni_sa4e\\portfolio_uebung3\\AveCaesarRaceController\\AveCaesarRaceController\\AveCaesarRaceController.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\larsc\\.nuget\\packages\\confluent.kafka\\2.8.0\\confluent.kafka.2.8.0.nupkg.sha512",
+    "C:\\Users\\larsc\\.nuget\\packages\\librdkafka.redist\\2.8.0\\librdkafka.redist.2.8.0.nupkg.sha512"
+  ],
+  "logs": []
+}
