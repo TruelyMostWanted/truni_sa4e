@@ -1,11 +1,7 @@
 ﻿using Confluent.Kafka;
 using Confluent.Kafka.Admin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
+
 
 public class KafkaClient
 {
@@ -20,25 +16,17 @@ public class KafkaClient
         remove => _MessageReceived -= value;
     }
     
-    // Adresse des Kafka-Brokers
     public string BootstrapServers { get; private set; }
-
-    // ID oder Key für den Client
     public string ClientId { get; private set; }
-
-    // Liste aller verfügbaren Topics
     public List<string> AvailableTopics { get; private set; } = new List<string>();
-
-    // Liste der Topics, an die wir uns registriert haben
     public List<string> SubscribedTopics { get; private set; } = new List<string>();
 
-    private IProducer<string, string> producer; // Kafka Producer
-    private IConsumer<string, string>? consumer; // Kafka Consumer
+    private IProducer<string, string> producer;
+    private IConsumer<string, string>? consumer;
     
     public CancellationTokenSource _CancellationTokenSource;
-    public Task _ReceivingTask; // Task für den Empfang von Nachrichten
-
-    // Angepasster Konstruktor, der auch eine ClientId benötigt
+    public Task _ReceivingTask;
+    
     public KafkaClient(string bootstrapServers, string clientId)
     {
         BootstrapServers = bootstrapServers;
@@ -47,7 +35,7 @@ public class KafkaClient
         var producerConfig = new ProducerConfig
         {
             BootstrapServers = BootstrapServers,
-            ClientId = ClientId // Der Client-Id wird in der Config hinterlegt.
+            ClientId = ClientId
         };
         producer = new ProducerBuilder<string, string>(producerConfig).Build();
         
@@ -55,16 +43,13 @@ public class KafkaClient
         var consumerConfig = new ConsumerConfig
         {
             BootstrapServers = BootstrapServers,
-            GroupId = $"KafkaClientConsumerGroup-{ClientId}", // Gruppen-ID umfasst die ClientId
+            GroupId = $"KafkaClientConsumerGroup-{ClientId}",
             AutoOffsetReset = AutoOffsetReset.Earliest,
             EnableAutoCommit = true
         };
         consumer = new ConsumerBuilder<string, string>(consumerConfig).Build();
     }
-
-    /// <summary>
-    /// Erstellt ein Kafka Topic.
-    /// </summary>
+    
     public async Task CreateTopicAsync(string topicName, int numPartitions = 1, short replicationFactor = 1)
     {
         using (var adminClient = new AdminClientBuilder(new AdminClientConfig { BootstrapServers = BootstrapServers }).Build())
@@ -79,7 +64,8 @@ public class KafkaClient
                 };
 
                 await adminClient.CreateTopicsAsync(new List<TopicSpecification> { topicSpec });
-                AvailableTopics.Add(topicName);
+                if (!AvailableTopics.Contains(topicName))
+                    AvailableTopics.Add(topicName);
                 Console.WriteLine($"Kafka Topic '{topicName}' wurde erfolgreich erstellt.");
             }
             catch (CreateTopicsException ex) when (ex.Results.Any(r => r.Error.Code == ErrorCode.TopicAlreadyExists))
@@ -92,10 +78,6 @@ public class KafkaClient
             }
         }
     }
-
-    /// <summary>
-    /// Löscht ein Kafka Topic.
-    /// </summary>
     public async Task DeleteTopicAsync(string topicName)
     {
         using (var adminClient = new AdminClientBuilder(new AdminClientConfig { BootstrapServers = BootstrapServers }).Build())
@@ -113,10 +95,6 @@ public class KafkaClient
             }
         }
     }
-
-    /// <summary>
-    /// Aktualisiert die Liste aller verfügbaren Topics in Kafka.
-    /// </summary>
     public void GetAllTopics()
     {
         using (var adminClient = new AdminClientBuilder(new AdminClientConfig { BootstrapServers = BootstrapServers }).Build())
@@ -129,7 +107,7 @@ public class KafkaClient
                 // Extrahiere die Namen aller Topics und aktualisiere die Liste
                 AvailableTopics = metadata.Topics.Select(t => t.Topic).ToList();
 
-                Console.WriteLine("Verfügbare Topics wurden erfolgreich abgerufen:");
+                Console.WriteLine($"[{ClientId}] Verfügbare Topics wurden erfolgreich abgerufen:");
                 foreach (var topic in AvailableTopics)
                 {
                     Console.WriteLine($" - {topic}");
@@ -137,14 +115,10 @@ public class KafkaClient
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Fehler beim Abrufen der Topics: {ex.Message}");
+                Console.WriteLine($"[{ClientId}] Fehler beim Abrufen der Topics: {ex.Message}");
             }
         }
     }
-
-    /// <summary>
-    /// Abonniert ein Topic lokal und bei Kafka.
-    /// </summary>
     public void SubscribeToTopic(string topicName)
     {
         if (!AvailableTopics.Contains(topicName))
@@ -158,18 +132,17 @@ public class KafkaClient
             Console.WriteLine($"Du bist bereits zum Topic '{topicName}' registriert.");
             return;
         }
-
-        // Hinzufügen zur Liste der abonnierten Topics
+        
         SubscribedTopics.Add(topicName);
         
-        // Bei Kafka subscriben
         consumer.Subscribe(SubscribedTopics);
         Console.WriteLine($"Das Topic '{topicName}' wurde erfolgreich abonniert.");
     }
-
-    /// <summary>
-    /// Unsubscribe von einem Topic.
-    /// </summary>
+    public void Resubscribe()
+    {
+        consumer?.Unsubscribe();
+        consumer?.Subscribe(SubscribedTopics);
+    }
     public void UnsubscribeFromTopic(string topicName)
     {
         if (!SubscribedTopics.Contains(topicName))
@@ -184,10 +157,7 @@ public class KafkaClient
         Console.WriteLine($"Das Topic '{topicName}' wurde erfolgreich abbestellt.");
     }
 
-    /// <summary>
-    /// Sendet eine Nachricht an ein bestimmtes Topic.
-    /// </summary>
-    public async Task SendMessageAsync(string topicName, string key, string value)
+    public async Task SendMessageAsync(string topicName, string messageString)
     {
         if (!AvailableTopics.Contains(topicName))
         {
@@ -199,25 +169,27 @@ public class KafkaClient
         {
             var message = new Message<string, string>
             {
-                Key = key, // Genutzter Schlüssel
-                Value = value
+                Key = ClientId,
+                Value = messageString
             };
 
             var deliveryReport = await producer.ProduceAsync(topicName, message);
-            Console.WriteLine($"Nachricht wurde erfolgreich von Client '{ClientId}' an das Topic '{topicName}' gesendet. Offset: {deliveryReport.Offset}");
+            //Console.WriteLine($"Nachricht wurde erfolgreich von Client '{ClientId}' an das Topic '{topicName}' gesendet. Offset: {deliveryReport.Offset}");
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Fehler beim Senden der Nachricht an das Topic '{topicName}': {ex.Message}");
         }
     }
-
-    /// <summary>
-    /// Empfängt kontinuierlich Nachrichten von abonnierten Topics.
-    /// </summary>
+    public async Task SendMessageAsync(string topicName, object messageObject)
+    {
+        var objectString = JsonSerializer.Serialize(messageObject);
+        await SendMessageAsync(topicName, objectString);
+    }
+    
     public async Task ReceiveMessagesAsync()
     {
-        Console.WriteLine($"Starte den Konsum von Topics: {string.Join(", ", SubscribedTopics)}");
+        Console.WriteLine($"[{ClientId}]: Starts listening to messages on topics [{string.Join(", ", SubscribedTopics)}]");
 
         try
         {
@@ -232,22 +204,21 @@ public class KafkaClient
                     var partition = consumeResult.Partition;
                     var offset = consumeResult.Offset;
                     
-                    Console.WriteLine($"[{ClientId}] ReceivedMessage:\n" +
-                                      $"Key: {key}, Value: {message}, Topic: {topic}, Partition: {partition}, Offset: {offset}");
-                    
+                    //Console.WriteLine($"[{ClientId}] ReceivedMessage:\n" +
+                    //                  $"Key: {key}, Value: {message}, Topic: {topic}, Partition: {partition}, Offset: {offset}");
                     _MessageReceived?.Invoke(key, topic, message, partition, offset);
                 }
                 catch (OperationCanceledException)
                 {
-                    Console.WriteLine("Empfang von Nachrichten wurde abgebrochen.");
+                    Console.WriteLine($"[{ClientId}]: Empfang von Nachrichten wurde abgebrochen.");
                 }
                 catch (ConsumeException ex)
                 {
-                    Console.WriteLine($"Fehler beim Empfangen der Nachricht: {ex.Error.Reason}");
+                    Console.WriteLine($"[{ClientId}]: Fehler beim Empfangen der Nachricht: {ex.Error.Reason}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Allgemeiner Fehler beim Empfangen der Nachricht: {ex.Message}");
+                    Console.WriteLine($"[{ClientId}]: Allgemeiner Fehler beim Empfangen der Nachricht: {ex.Message}");
                 }
             }
         }
@@ -257,7 +228,6 @@ public class KafkaClient
             Console.WriteLine("Kafka Consumer wurde beendet.");
         }
     }
-
     public bool BeginReceivingMessagesAsync()
     {
         if (_ReceivingTask is not null)
@@ -278,14 +248,22 @@ public class KafkaClient
         return true;
     }
     
-    /// <summary>
-    /// Schließt den Producer.
-    /// </summary>
+    
     public void Close()
     {
-        producer?.Flush();
-        producer?.Dispose();
-        consumer?.Dispose();
-        Console.WriteLine("Kafka Client wurde geschlossen.");
+        try
+        {
+            _CancellationTokenSource.Cancel();
+            consumer?.Unsubscribe();
+            producer?.Flush();
+            producer?.Dispose();
+            consumer?.Dispose();
+            _ReceivingTask = null;
+            Console.WriteLine($"[{ClientId}] CLOSED");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[{ClientId}] CLOSING_ERROR: {ex.Message}");
+        }
     }
 }

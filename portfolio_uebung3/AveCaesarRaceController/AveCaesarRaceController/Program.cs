@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using System.Text.Json;
-using AveCaesarRaceController.races;
-using Confluent.Kafka;
+﻿using AveCaesarRaceController.races;
+using AveCaesarRaceController.tracks;
 
 namespace AveCaesarRaceController;
 
@@ -9,14 +7,25 @@ public class Program
 {
     private static void Main(string[] args)
     {
+        Console.WriteLine("[INFO] Starting AvaCaesar Race Controller");
+        Task.Delay(4000).Wait();
+        Console.WriteLine("[INFO] 3...");
+        Task.Delay(1000).Wait();
+        Console.WriteLine("[INFO] 2...");
+        Task.Delay(1000).Wait();
+        Console.WriteLine("[INFO] 1...");
+        Task.Delay(1000).Wait();
+        Console.WriteLine("[INFO] All Systems are ready!");
+        
         var raceKafkaClient = new RaceKafkaClient();
         
-        var createTopicTask1 = raceKafkaClient.CreateTopicAsync("race_api");
-        createTopicTask1.Wait();
-        var createTopicTask2 = raceKafkaClient.CreateTopicAsync("segments_api");
-        createTopicTask2.Wait();
+        var createRaceApi = raceKafkaClient.CreateTopicAsync(Race.TOPIC_NAME);
+        createRaceApi.Wait();
         
-        raceKafkaClient.SubscribeToTopic("race_api");
+        var createSegmentsApi = raceKafkaClient.CreateTopicAsync(TrackSegment.TOPIC_NAME);
+        createSegmentsApi.Wait();
+        
+        raceKafkaClient.SubscribeToTopic(Race.TOPIC_NAME);
         
         raceKafkaClient.BeginReceivingMessagesAsync();
         while (!raceKafkaClient._CancellationTokenSource.IsCancellationRequested)
