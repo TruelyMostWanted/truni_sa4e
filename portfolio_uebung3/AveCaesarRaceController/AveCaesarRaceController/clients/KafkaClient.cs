@@ -7,7 +7,8 @@ public class KafkaClient
 {
     public delegate void MessageReceivedDelegate(string key, string topic, string message, Partition partition, Offset offset);
     
-    public static readonly string DefaultBootstrapServers = "kafka:9092";
+    public static readonly string OldBootstrapServers = "kafka:9092";
+    public static readonly string DefaultBootstrapServers = "kafka1:9092,kafka2:9093,kafka3:9094";
     
     private event MessageReceivedDelegate _MessageReceived;
     public event MessageReceivedDelegate MessageReceived

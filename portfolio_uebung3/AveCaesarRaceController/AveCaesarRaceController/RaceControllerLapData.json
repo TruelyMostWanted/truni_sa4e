@@ -1,0 +1,86 @@
+﻿{
+  "racecontroller": {
+    "json": [
+      {
+        "playerID": 1,
+        "senderID": "start-and-goal-1",
+        "receiverID": "start-and-goal-1",
+        "currentLap": 4,
+        "maxLaps": 3,
+        "sentAt": "2025-03-16T19:59:32.7435114+00:00",
+        "receivedAt": "0001-01-01T00:00:00",
+        "totalTimeMs": 1909
+      },
+      {
+        "playerID": 4,
+        "senderID": "start-and-goal-1",
+        "receiverID": "start-and-goal-1",
+        "currentLap": 4,
+        "maxLaps": 3,
+        "sentAt": "2025-03-16T19:59:32.7435788+00:00",
+        "receivedAt": "0001-01-01T00:00:00",
+        "totalTimeMs": 1910
+      },
+      {
+        "playerID": 7,
+        "senderID": "start-and-goal-1",
+        "receiverID": "start-and-goal-1",
+        "currentLap": 4,
+        "maxLaps": 3,
+        "sentAt": "2025-03-16T19:59:32.743577+00:00",
+        "receivedAt": "0001-01-01T00:00:00",
+        "totalTimeMs": 1910
+      },
+      {
+        "playerID": 6,
+        "senderID": "start-and-goal-1",
+        "receiverID": "start-and-goal-1",
+        "currentLap": 4,
+        "maxLaps": 3,
+        "sentAt": "2025-03-16T19:59:32.7435809+00:00",
+        "receivedAt": "0001-01-01T00:00:00",
+        "totalTimeMs": 1910
+      },
+      {
+        "playerID": 5,
+        "senderID": "start-and-goal-1",
+        "receiverID": "start-and-goal-1",
+        "currentLap": 4,
+        "maxLaps": 3,
+        "sentAt": "2025-03-16T19:59:32.7435749+00:00",
+        "receivedAt": "0001-01-01T00:00:00",
+        "totalTimeMs": 1909
+      },
+      {
+        "playerID": 3,
+        "senderID": "start-and-goal-1",
+        "receiverID": "start-and-goal-1",
+        "currentLap": 4,
+        "maxLaps": 3,
+        "sentAt": "2025-03-16T19:59:32.7435635+00:00",
+        "receivedAt": "0001-01-01T00:00:00",
+        "totalTimeMs": 1909
+      },
+      {
+        "playerID": 2,
+        "senderID": "start-and-goal-1",
+        "receiverID": "start-and-goal-1",
+        "currentLap": 4,
+        "maxLaps": 3,
+        "sentAt": "2025-03-16T19:59:32.7435612+00:00",
+        "receivedAt": "0001-01-01T00:00:00",
+        "totalTimeMs": 1909
+      },
+      {
+        "playerID": 0,
+        "senderID": "start-and-goal-1",
+        "receiverID": "start-and-goal-1",
+        "currentLap": 4,
+        "maxLaps": 3,
+        "sentAt": "2025-03-16T19:59:32.7435655+00:00",
+        "receivedAt": "0001-01-01T00:00:00",
+        "totalTimeMs": 1913
+      }
+    ]
+  }
+}

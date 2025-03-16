@@ -8,14 +8,19 @@ public class Program
     private static void Main(string[] args)
     {
         Console.WriteLine("[INFO] Starting AvaCaesar Race Controller");
-        Task.Delay(4000).Wait();
+        Task.Delay(6000).Wait();
+        Console.WriteLine("[INFO] Preparing...");
+        Task.Delay(3000).Wait();
+        Console.WriteLine("[INFO] 5...");
+        Task.Delay(1000).Wait();
+        Console.WriteLine("[INFO] 4...");
+        Task.Delay(1000).Wait();
         Console.WriteLine("[INFO] 3...");
         Task.Delay(1000).Wait();
         Console.WriteLine("[INFO] 2...");
         Task.Delay(1000).Wait();
         Console.WriteLine("[INFO] 1...");
         Task.Delay(1000).Wait();
-        Console.WriteLine("[INFO] All Systems are ready!");
         
         var raceKafkaClient = new RaceKafkaClient();
         
@@ -28,9 +33,11 @@ public class Program
         raceKafkaClient.SubscribeToTopic(Race.TOPIC_NAME);
         
         raceKafkaClient.BeginReceivingMessagesAsync();
+        
+        Console.WriteLine("[INFO] All Systems are ready!");
         while (!raceKafkaClient._CancellationTokenSource.IsCancellationRequested)
         {
-            
+            Task.Delay(5000).Wait();
         }
         raceKafkaClient.Close();
     }
