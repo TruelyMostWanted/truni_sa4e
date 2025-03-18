@@ -4,69 +4,98 @@ namespace AveCaesarRaceController.tracks
 {
     public class TrackGenerator
     {
-        public static TrackList GenerateTracks(int numTracks, int lengthOfTrack)
+        /// <summary>
+        /// Wenn numTracks <= 0 || lengthOfTrack <= 0, dann wird eine leere TrackList zurückgegeben.
+        /// Wenn numTracks == 1
+        ///     WENN lengthOfTrack == 1:
+        ///     DANN Gebe eine TrackList mit 1 Track und 1 Segment zurück
+        ///     ANSONSTEN
+        ///     - Das 1. Segment ist immer "start-goal" und die weiteren sind gemischt aus "Normal", "Caesar"
+        ///     - 
+        /// </summary>
+        public static List<Track> GenerateTracks(int numTracks, int segmentsCount)
         {
-            var allTracks = new TrackList();
-
-            for (int t = 1; t <= numTracks; t++)
+            //(0) Check for invalid parameters
+            if (numTracks <= 0 || segmentsCount <= 0)
+                return [];
+            
+            //(1) Create the resulting tracks list
+            var tracksList = new List<Track>(capacity: numTracks);
+            
+            //(2) Generate the tracks
+            for (int trackId = 1; trackId <= numTracks; trackId++)
             {
                 var segments = new List<TrackSegment>();
-
-                // First segment: start-and-goal-t
-                string startSegmentId = $"start-and-goal-{t}";
-                List<string> nextSegments;
-                if (lengthOfTrack == 1)
+                
+                //(2.1) First segment: start-and-goal-t
+                var startGoalSegment = new TrackSegment()
                 {
-                    // Edge case: track length is 1 => no "normal" segments, loops onto itself
-                    nextSegments = new List<string> { startSegmentId };
+                    segmentId = "start-and-goal-" + trackId,
+                    type = TrackSegment.TYPE_START_GOAL,
+                    nextSegments = [],
+                    MaxPlayers = 1_000_000
+                };
+                segments.Add(startGoalSegment);
+
+                //(2.2) If there are no more segments, then the start-and-goal segment loops onto itself
+                if (segmentsCount == 1)
+                {
+                    startGoalSegment.nextSegments.Add(startGoalSegment.segmentId);
+                    tracksList.Add(new Track(){ trackId = trackId, segments = segments });
+                    continue;
                 }
                 else
                 {
-                    nextSegments = new List<string> { $"segment-{t}-1" };
+                    startGoalSegment.nextSegments.Add($"segment-{trackId}-1");
                 }
-
-                var startSegment = new TrackSegment
+                
+                //(2.3) Create normal segments: segment-t-c for c in [1..(L-1)]
+                for (int segmentId = 1; segmentId < segmentsCount; segmentId++)
                 {
-                    segmentId = startSegmentId,
-                    type = TrackSegment.TYPE_START_GOAL,
-                    nextSegments = nextSegments
-                };
-                segments.Add(startSegment);
-
-                // Create normal segments: segment-t-c for c in [1..(L-1)]
-                for (int c = 1; c < lengthOfTrack; c++)
-                {
-                    string segId = $"segment-{t}-{c}";
-                    List<string> nextSegs;
-
-                    // If this is the last normal segment, it loops back to 'start-and-goal-t'
-                    if (c == lengthOfTrack - 1)
+                    //(2.3.1) Define the new segment
+                    var segment = new TrackSegment()
                     {
-                        nextSegs = new List<string> { startSegmentId };
-                    }
-                    else
-                    {
-                        nextSegs = new List<string> { $"segment-{t}-{c + 1}" };
-                    }
-
-                    var segment = new TrackSegment
-                    {
-                        segmentId = segId,
+                        segmentId = $"segment-{trackId}-{segmentId}",
                         type = TrackSegment.TYPE_NORMAL,
-                        nextSegments = nextSegs
+                        nextSegments = new(capacity: 4),
+                        MaxPlayers = 1
                     };
+                    
+                    //(2.3.2) Add the segment to the track
                     segments.Add(segment);
+                    
+                    //(2.3.3) Are we at the last segment?
+                    if (segmentId == segmentsCount - 1)
+                        segment.nextSegments.Add(startGoalSegment.segmentId);
+                    else
+                        segment.nextSegments.Add($"segment-{trackId}-{segmentId + 1}");
+                    
+                    var random = new Random();
+                    
+                    //(2.3.4) There is a 10% chance that the field is of type "Caesar" instead of "Normal"
+                    if (random.Next(0, 100) < 15)
+                        segment.type = TrackSegment.TYPE_CAESAR;
+                    //(2.3.5) There is a 15% chance that the field is of type "Bottleneck" instead of "Normal"
+                    else if (random.Next(0, 100) < 20)
+                        segment.type = TrackSegment.TYPE_BOTTLENECK;
+                    //(2.3.6) There is a 5% chance that the field is of type "Portal" instead of "Normal"
+                    else if (random.Next(0, 100) < 5)
+                        segment.type = TrackSegment.TYPE_PORTAL;
+                    //(2.3.7) There is a 3% chance that the field is of type "Jump" instead of "Normal"
+                    else if (random.Next(0, 100) < 2)
+                        segment.type = TrackSegment.TYPE_JUMP;
                 }
 
+                //(2.4) Create a new Track storing the segments
                 var trackDefinition = new Track
                 {
-                    trackId = t,
+                    trackId = trackId,
                     segments = segments
                 };
-                allTracks.Add(trackDefinition);
+                tracksList.Add(trackDefinition);
             }
 
-            return allTracks;
+            return tracksList;
         }
 
         public static void TestMain(string[] args)
@@ -92,7 +121,7 @@ namespace AveCaesarRaceController.tracks
 
             try
             {
-                TrackList tracksData = GenerateTracks(numTracks, lengthOfTrack);
+                List<Track> tracksData = GenerateTracks(numTracks, lengthOfTrack);
 
                 // Serialize to JSON
                 var options = new JsonSerializerOptions { WriteIndented = true };
