@@ -22,23 +22,25 @@ public class Program
         Console.WriteLine("[INFO] 1...");
         Task.Delay(1000).Wait();
         
+        //(1) First we create a KafkaClient especially for the Race related logic. 
         var raceKafkaClient = new RaceKafkaClient();
         
-        var createRaceApi = raceKafkaClient.CreateTopicAsync(Race.TOPIC_NAME);
-        createRaceApi.Wait();
+        //(2) It will try to create both the RACE_API and the SEGMENTS_API
+        raceKafkaClient.CreateTopicAsync(Race.TOPIC_NAME).Wait();
+        raceKafkaClient.CreateTopicAsync(TrackSegment.TOPIC_NAME).Wait();
         
-        var createSegmentsApi = raceKafkaClient.CreateTopicAsync(TrackSegment.TOPIC_NAME);
-        createSegmentsApi.Wait();
-        
+        //(3) Subscribe to only the RACE_API
         raceKafkaClient.SubscribeToTopic(Race.TOPIC_NAME);
-        
+
+        //(4) Begin listening to messages on the RACE_API and keep the thread alive
         raceKafkaClient.BeginReceivingMessagesAsync();
-        
         Console.WriteLine("[INFO] All Systems are ready!");
         while (!raceKafkaClient._CancellationTokenSource.IsCancellationRequested)
         {
             Task.Delay(5000).Wait();
         }
+        
+        //(5) If connections get closed, we need to clean up the resources
         raceKafkaClient.Close();
     }
 }

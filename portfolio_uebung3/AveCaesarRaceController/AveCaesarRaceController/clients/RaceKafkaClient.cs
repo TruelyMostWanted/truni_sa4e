@@ -5,6 +5,11 @@ using Confluent.Kafka;
 
 namespace AveCaesarRaceController.races;
 
+/// <summary>
+/// This class represents the controller of the race. It is responsible for creating and managing races.
+/// It listens to messages on the RACE_API and if it receives a message requesting the start of a race
+/// A race will get created and players will get created and sent to the first segment.
+/// </summary>
 public class RaceKafkaClient : KafkaClient
 {
     public static readonly string CLIENT_ID = "RACE_CTRL";

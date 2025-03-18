@@ -5,6 +5,13 @@ using Confluent.Kafka;
 
 namespace AveCaesarRaceController.races;
 
+/// <summary>
+/// This class represents a Kafka client for a specific segment.
+/// It is responsible for receiving and sending messages to and from the segment.
+/// It listens to messages on the segment's topic and if it receives a message from a player
+/// it will process the message and send it to the next segment
+/// In the end it will send a race finished message back to the Race Controller (RaceKafkaClient)
+/// </summary>
 public class SegmentKafkaClient : KafkaClient
 {
     public TrackSegment Segment { get; set; }

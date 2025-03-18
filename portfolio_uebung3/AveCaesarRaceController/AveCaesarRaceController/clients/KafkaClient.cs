@@ -2,7 +2,12 @@
 using Confluent.Kafka.Admin;
 using System.Text.Json;
 
-
+/// <summary>
+/// This class is a wrapper for the Confluent.Kafka library.
+/// It provides methods to create, delete, subscribe and unsubscribe to topics, send and receive messages.
+/// It also provides events for received messages.
+/// It can be used as a base class for more specific Kafka clients.
+/// </summary>
 public class KafkaClient
 {
     public delegate void MessageReceivedDelegate(string key, string topic, string message, Partition partition, Offset offset);
