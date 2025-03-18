@@ -1,139 +1,253 @@
-# Project Structure
+# Projektplan: AveCaesar
 
-## 1) Welche Docker-Images werden benutzt?
+## 1) Genutzte Docker-Images
 
-- **Kafka**: Messaging-System zur Kommunikation zwischen den Services
-- **Zookeeper**: Notwendig für den Betrieb von Kafka
-- **.NET SDK/Runtime**: Wird für die C#-Projekte benötigt
-- **RaceController**: Hauptlogik des Rennens
-- **SegmentService**: Dynamisch erstellte Services für jedes Streckensegment
+Folgende Docker-Images werden verwendet:
+- **Kafka**: Message-Broker für die Kommunikation zwischen den Services
+- **Zookeeper**: Koordinationsdienst für Kafka
+- **RaceController**: Verantwortlich für das Rennen und das Management der Segment-Services
+- **SegmentService**: Einzelne Streckenabschnitte, die die Token (Spieler) verarbeiten
 
-## 2) Welche C#-Projekte werden erstellt?
+## 2) Selbst erstellte Docker-Container
+[readme.md](readme.md)
+- **RaceController** (C#/.NET): Verwaltet das Rennen und kommuniziert über Kafka
+- **SegmentService** (C#/.NET): Wird dynamisch für jedes Segment erzeugt und verarbeitet Spieler-Token
 
-- **RaceController**: Hauptsteuerung des Rennens, empfängt CLI-Befehle, erstellt Strecken und koordiniert das Rennen.
-- **SegmentService**: Einzelne Segmente der Rennstrecke, die über Kafka kommunizieren und Spieler weiterleiten.
+## 3) Container-Funktionalitäten
 
-## 3) Aufgaben der Docker-Container?
+- **RaceController**:
+  - Empfängt CLI-Befehle über Kafka
+  - Erstellt die Rennstrecke
+  - Startet die benötigten SegmentServices
+  - Verwaltet das Weiterreichen der Spieler-Tokens
+  - Gibt am Ende das Rennergebnis aus
 
-- **Statische Container:**
-  - **Kafka**: Message Broker für die Kommunikation zwischen RaceController und SegmentServices.
-  - **Zookeeper**: Unterstützt Kafka.
-  - **DotNet**: Basiscontainer für sämtliche .NET-Anwendungen.
-  - **RaceController**: Nimmt CLI-Befehle an, startet Rennen, verwaltet Segment Services, führt das Rennen aus.
-- **Dynamische Container:**
-  - **SegmentService-**: Einzelne Streckenabschnitte, die Spieler-Token weiterleiten.
+- **SegmentService**:
+  - Erhält Token von Kafka
+  - Aktualisiert Token-Informationen (Zeit, Segment-Position)
+  - Leitet Token an das nächste Segment weiter
+  
+## 4) Projektstruktur
 
-## 4) Ablauf des Projekts
+```
+AveCaesar/
+│── docker-compose.yaml
+│── start_project.bat
+│── RaceController/
+│   ├── Program.cs
+│   ├── KafkaClient.cs
+│   ├── TrackGenerator.cs
+│   ├── TokenManager.cs
+│── SegmentService/
+│   ├── Program.cs
+│   ├── KafkaListener.cs
+│   ├── SegmentProcessor.cs
+```
 
-1. **Starten der Docker Compose.yaml**
+## 5) Ausführung des Projekts
 
-   - Mit `docker-compose up -d` werden alle statischen Container gestartet: Kafka, Zookeeper, RaceController.
+### 5.0) Aufbau der Docker Compose-Datei
 
-2. **Prüfen der laufenden Container / Healthchecks**
+```yaml
+version: '3.8'
 
-   - Mit `docker ps` wird überprüft, ob alle Container laufen.
-   - Healthchecks für Kafka und Zookeeper müssen erfolgreich sein.
+services:
+  # Zookeeper Service (Container 1)
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      avecaesar-net:
+        ipv4_address: 172.20.0.10
 
-3. **Struktur und Aufbau eines CLI-Befehls**
+  # Kafka Broker (Container 2)
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+    depends_on:
+      - zookeeper
+    networks:
+      avecaesar-net:
+        ipv4_address: 172.20.0.11
 
-   - Ein Rennen wird mit einem CLI-Befehl gestartet, z. B.:
-     ```sh
-     start_race segments=5 laps=3 players=4
-     ```
-   - Parameter:
-     - `segments=5`: Anzahl der Streckenabschnitte
-     - `laps=3`: Anzahl der Runden
-     - `players=4`: Anzahl der Spieler
+networks:
+  avecaesar-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+```
 
-4. **Senden eines CLI-Befehls an den RaceController**
+### 5.1) Starten der statischen Docker-Container
 
-   - Der RaceController empfängt den CLI-Befehl und beginnt mit der Rennvorbereitung.
+- Starte die benötigten Container mit:
+  ```sh
+  docker-compose up -d
+  ```
+- Dies startet Kafka, Zookeeper und den RaceController.
 
-5. **Verwenden der Parameter zur Generierung der Rennstrecke**
+- Alternativ kann eine Batch-Datei genutzt werden:
+  ```shell
+  @echo off
+  cd /d %~dp0
+  docker-compose -f compose.yaml up
+  pause
+  ```
 
-   - Der TrackGenerator (als Teil des RaceControllers) erzeugt eine Rennstrecke im JSON-Format.
-   - Beispielhafte JSON-Ausgabe:
-    ```json
-	{
-      "trackId": "1",
-      "segments": [
-        {
-          "segmentId": "start-and-goal-1",
-          "type": "start-goal",
-          "nextSegments": [
-            "segment-1-1"
-          ]
-        },
-        {
-          "segmentId": "segment-1-1",
-          "type": "normal",
-          "nextSegments": [
-            "segment-1-2"
-          ]
-        },
-        {
-          "segmentId": "segment-1-2",
-          "type": "normal",
-          "nextSegments": [
-            "segment-1-3"
-          ]
-        },
-        {
-          "segmentId": "segment-1-3",
-          "type": "normal",
-          "nextSegments": [
-            "segment-1-4"
-          ]
-        },
-        {
-          "segmentId": "segment-1-4",
-          "type": "normal",
-          "nextSegments": [
-            "start-and-goal-1"
-          ]
-        }
-      ]
-    }
-    ```
+### 5.2) Prüfen der laufenden Container
 
-6. **Starten der Segment Services**
+- Stelle sicher, dass die Container laufen:
+  ```sh
+  docker ps
+  ```
+- Überprüfe die Logs, falls ein Container fehlschlägt:
+  ```sh
+  docker logs <container_name>
+  ```
 
-   - Der RaceController erstellt für jedes Segment dynamisch einen **SegmentService-Container**.
-   - Insgesamt werden `segments` viele SegmentServices als Docker-Container erzeugt.
+### 5.3) Anmeldung des RaceControllers am Kafka Messaging System
 
-7. **Starten des Rennens / Tokengenerierung**
+- Das `ConsumerConfig`-Objekt definiert die Konfiguration für den Kafka Consumer:
+  ```csharp
+  using Confluent.Kafka;
 
-   - Der RaceController generiert pro Spieler ein Token:
-     ```json
-     {
-       "player_id": 1,
-       "start_time": "TIMESTAMP",
-       "current_time": "TIMESTAMP",
-       "current_lap": 1,
-       "final_lap": 3
-     }
-     ```
-   - Diese Tokens werden an das erste Segment (`start-goal`) gesendet.
+  var config = new ConsumerConfig
+  {
+      BootstrapServers = "localhost:9092",
+      GroupId = "race_controller_group",
+      AutoOffsetReset = AutoOffsetReset.Earliest
+  };
+  ```
+  - `BootstrapServers`: Adresse des Kafka Brokers
+  - `GroupId`: Definiert die Konsumentengruppe
+  - `AutoOffsetReset`: Startpunkt für Nachrichten (Earliest = alle vorhandenen Nachrichten abarbeiten)
 
-8. **Senden und Weiterleiten des Tokens**
+- Die Methode `Subscribe()` meldet den Consumer für ein bestimmtes Kafka-Topic an:
+  ```csharp
+  using var consumer = new ConsumerBuilder<Ignore, string>(config).Build();
+  consumer.Subscribe("race_commands");
+  ```
 
-   - Jedes Segment empfängt ein Token, aktualisiert `current_time` und leitet es an das nächste Segment weiter.
-   - Nach einer Runde wird `current_lap` erhöht.
-   - Sobald `current_lap == final_lap`, wird das Token an `start-goal` zurückgesendet.
+### 5.4) Struktur eines CLI-Befehls
 
-9. **Abschluss des Rennens**
-
-   - Wenn alle Spieler das Ziel erreicht haben, beendet der RaceController das Rennen.
-   - Die dynamisch erstellten SegmentServices werden gestoppt und entfernt.
-
-10. **Ergebnis**
-
-- Die endgültige Rennzeit pro Spieler wird geloggt und zurückgegeben.
-- Das Ergebnis könnte folgendermaßen aussehen:
+- Der CLI-Befehl wird über Kafka gesendet und sieht beispielsweise so aus:
   ```json
   {
-    "player_id": 1,
-    "total_time": "00:02:34.567"
+    "Action": "start_race",
+    "Tracks": 1,
+    "Segments": 5,
+    "Players": 4,
+    "CircuitLaps": 3
   }
   ```
+- Die JSON-Nachricht wird in ein C#-Objekt `StartRaceCommand` deserialisiert:
+  ```csharp
+  public class StartRaceCommand
+  {
+      public string Action { get; set; }
+      public int Tracks { get; set; }
+      public int Segments { get; set; }
+      public int Players { get; set; }
+      public int CircuitLaps { get; set; }
+  }
+  ```
+
+### 5.5) Empfangen des CLI-Befehls beim RaceController
+
+- Der RaceController liest Nachrichten von Kafka innerhalb der `Main`-Methode:
+  ```csharp
+  while (true)
+  {
+      var consumeResult = consumer.Consume(cancellationToken);
+      var command = JsonSerializer.Deserialize<StartRaceCommand>(consumeResult.Value);
+      Console.WriteLine($"Empfangen: {command.Action}");
+  }
+  ```
+  - Die Nachricht wird von Kafka konsumiert
+  - Das JSON wird in das `StartRaceCommand`-Objekt umgewandelt
+  - Der RaceController verarbeitet den Befehl
+
+### 5.6) Generierung der Rennstrecke
+
+- Nach dem Empfangen des Befehls erzeugt der RaceController die Rennstrecke:
+  ```json
+  {
+    "trackId": "1",
+    "segments": [
+      {
+        "segmentId": "start-and-goal-1",
+        "type": "start-goal",
+        "nextSegments": ["segment-1-1"]
+      },
+      {
+        "segmentId": "segment-1-1",
+        "type": "normal",
+        "nextSegments": ["segment-1-2"]
+      }
+    ]
+  }
+  ```
+
+### 5.7) Starten der SegmentService-Container
+
+- Der RaceController startet für jedes Segment einen neuen Container:
+  ```csharp
+  Process.Start("docker", "run -d --name SegmentService-1 segment_service_image");
+  ```
+
+### 5.8) Übertragen der Segment-Daten an den jeweiligen SegmentService
+
+- Das Segment-JSON wird an Kafka gesendet:
+  ```csharp
+  var message = JsonSerializer.Serialize(segmentData);
+  producer.Produce("segment_topic", new Message<Null, string> { Value = message });
+  ```
+
+### 5.9) Empfang und Verarbeitung eines Segment-Tokens
+
+- Der SegmentService empfängt Nachrichten von Kafka:
+  ```csharp
+  var consumeResult = consumer.Consume(cancellationToken);
+  var token = JsonSerializer.Deserialize<PlayerToken>(consumeResult.Value);
+  Console.WriteLine($"Spieler {token.PlayerId} erreicht Segment {token.SegmentId}");
+  ```
+
+### 5.10) Weiterleitung des Tokens zum nächsten Segment
+
+- Nach der Verarbeitung sendet der SegmentService das Token weiter:
+  ```csharp
+  token.CurrentTime = DateTime.UtcNow;
+  producer.Produce("next_segment_topic", new Message<Null, string> { Value = JsonSerializer.Serialize(token) });
+  ```
+
+### 5.11) Abschluss des Rennens
+
+- Wenn alle Runden abgeschlossen sind, wird das Ergebnis an den RaceController gesendet:
+  ```json
+  [
+    { "player_id": 1, "total_time": "00:02:34.567" },
+    { "player_id": 2, "total_time": "00:02:34.890" }
+  ]
+  ```
+
+### 5.12) Ausgabe des Rennergebnisses
+
+- Der RaceController gibt die Endzeiten aller Spieler aus:
+  ```csharp
+  Console.WriteLine(JsonSerializer.Serialize(raceResults));
+  ```
+
+---
+
+Diese Dokumentation beschreibt die vollständige Architektur und Implementierung des AveCaesar-Projekts mit Kafka und dynamischen Docker-Containern. Falls Änderungen oder Ergänzungen nötig sind, gib einfach Bescheid! 🚀
 
