@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AveCaesarRaceController")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee678e0b924f46c24c62e1657b9993bc271e8c2e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6235175ee9e779f10afab0f3f952bbcf244b288")]
 [assembly: System.Reflection.AssemblyProductAttribute("AveCaesarRaceController")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AveCaesarRaceController")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
