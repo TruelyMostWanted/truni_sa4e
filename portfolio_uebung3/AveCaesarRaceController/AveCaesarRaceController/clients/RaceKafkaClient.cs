@@ -56,7 +56,7 @@ public class RaceKafkaClient : KafkaClient
         //(3) Create a new segment client for each segment
         for (var i = 0; i < segments; i++)
         {
-            var senderId = (i == 0) ? this.ClientId : trackSegments[i-1].segmentId;
+            //var senderId = (i == 0) ? this.ClientId : trackSegments[i-1].segmentId;
             var segmentClient = new SegmentKafkaClient(trackSegments[i]);
             SegmentClients.Add(segmentClient);
             
@@ -69,19 +69,27 @@ public class RaceKafkaClient : KafkaClient
         var playerTokens = new List<PlayerToken>();
         for (var i = 0; i < players; i++)
         {
-            var playerToken = new PlayerToken(
-                playerId: i, 
-                senderId: ClientId, 
-                receiverId: track1.segments[0].segmentId, 
-                currentLap: 0, 
-                maxLaps: laps, 
-                sentAt: DateTime.Now, 
-                receivedAt: DateTime.MinValue, 
-                totalTimeMs: 0
-            );
+            var playerToken = new PlayerToken()
+            {
+                PlayerID = i,
+                SenderID = ClientId,
+                ReceiverID = track1.segments[0].segmentId,
+                CurrentLap = 0,
+                MaxLaps = laps,
+                CreatedAt = DateTime.Now,
+                SentAt = DateTime.Now,
+                TotalTimeMs = 0,
+                
+                //TASK 3: SegmentType "Caesar" = Store how many times the player greeted Caesar
+                CaesarGreets = 0
+            };
             playerTokens.Add(playerToken);
+            Console.WriteLine($"[{ClientId}] CREATED_PLAYER: {playerToken.PlayerID}");
             
-            Task.Run(() => SegmentClients[0].SendMessageAsync(TrackSegment.TOPIC_NAME, playerToken.ToJson()));
+            
+            var senderTask = SendMessageAsync(TrackSegment.TOPIC_NAME, playerToken.ToJson());
+            senderTask.Wait();
+            //Task.Run(() => SegmentClients[0].SendMessageAsync(TrackSegment.TOPIC_NAME, playerToken.ToJson()));
         }
     }
     

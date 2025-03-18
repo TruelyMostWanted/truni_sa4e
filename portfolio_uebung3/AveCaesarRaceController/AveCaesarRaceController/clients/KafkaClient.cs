@@ -175,7 +175,7 @@ public class KafkaClient
             };
 
             var deliveryReport = await producer.ProduceAsync(topicName, message);
-            //Console.WriteLine($"Nachricht wurde erfolgreich von Client '{ClientId}' an das Topic '{topicName}' gesendet. Offset: {deliveryReport.Offset}");
+            Console.WriteLine($"Nachricht wurde erfolgreich von Client '{ClientId}' an das Topic '{topicName}' gesendet. Offset: {deliveryReport.Offset}");
         }
         catch (Exception ex)
         {

@@ -29,28 +29,52 @@ public class SegmentKafkaClient : KafkaClient
     private void _OnPlayerTokenMessageReceived(string sender, string topic, PlayerToken playerToken, Partition partition, Offset offset)
     {
         //(1) Messages are only valid if the target matches our segmentId
-        if(!playerToken.ReceiverID.Equals(Segment.segmentId))
+        if (!playerToken.ReceiverID.Equals(ClientId))
+        {
+            //Console.WriteLine($"[{ClientId}] ERROR: Received message for wrong segment: {playerToken.ReceiverID}");
             return;
+        }
+        //else
+        //{
+        //    Console.WriteLine($"[{ClientId}] Received message (from:{playerToken.SenderID}/to:{playerToken.ReceiverID})");
+        //}
         
         //(2) Set the ReceivedAt timestamp
-        playerToken.ReceivedAt = DateTime.Now;
+        var receivedAt = DateTime.Now;
+        
+        //(2.1) TASK 3: Register the player in the segment
+        var canAdd = Segment.TryRegisterPlayer(playerToken);
         
         //(3) Calculate the time between SentAt and ReceivedAt
         //and add it to the TotalTimeMs
-        var diff = playerToken.ReceivedAt - playerToken.SentAt;
+        var diff = receivedAt - playerToken.SentAt;
         playerToken.TotalTimeMs += (ulong)diff.TotalMilliseconds;
         
         //(4) Update Sender and Receiver
         playerToken.SenderID = Segment.segmentId;
-        playerToken.ReceivedAt = DateTime.MinValue;
         
         //(5) Are we a "start-goal" segment? => Update the lap counter
         if (Segment.type.Equals(TrackSegment.TYPE_START_GOAL))
             playerToken.CurrentLap++;
         
+        //(6.1) TASK 3: Is this a "Caesar" segment type? => Increment CaesarGreets
+        if (Segment.type.Equals(TrackSegment.TYPE_CAESAR))
+        {
+            playerToken.CaesarGreets++;
+        }
+        //(6.2) TASK 3: Is this a "Bottleneck" segment type? => Wait for a random time between 1 and 5 seconds
+        else if (Segment.type.Equals(TrackSegment.TYPE_BOTTLENECK))
+        {
+            var randomWait = new Random().Next(1000, 5000);
+            playerToken.TotalTimeMs += (ulong)randomWait;
+        }
+        
         playerToken.SentAt = DateTime.Now;
         
-        //(6) Who needs to receive it?
+        //(7) TASK 3: Unregister the player from the segment
+        Segment.UnregisterPlayer(playerToken);
+        
+        //(8) Who needs to receive it?
         //If below MaxLaps --> Next Segment
         if(playerToken.CurrentLap <= playerToken.MaxLaps)
         {
@@ -58,12 +82,15 @@ public class SegmentKafkaClient : KafkaClient
             if (nextSegmentIndex == -1) 
                 return;
             playerToken.ReceiverID = Segment.nextSegments[nextSegmentIndex];
-            Task.Run(() => SendMessageAsync(TrackSegment.TOPIC_NAME, playerToken.ToJson()));
+            
+            var sendTask = SendMessageAsync(TrackSegment.TOPIC_NAME, playerToken.ToJson());
+            sendTask.Wait();
         }
         //else --> Race Controller
         else
         {
-            Task.Run(() => SendMessageAsync(Race.TOPIC_NAME, playerToken.ToJson()));
+            var sendTask = SendMessageAsync(Race.TOPIC_NAME, playerToken.ToJson());
+            sendTask.Wait();
         }
     }
     
@@ -73,7 +100,10 @@ public class SegmentKafkaClient : KafkaClient
         {
             var playerMessage = JsonSerializer.Deserialize<PlayerToken>(msg);
             if (playerMessage == null)
+            {
+                Console.WriteLine($"[{ClientId}] ERROR: Could not deserialize message: {msg}");
                 return;
+            }
             _OnPlayerTokenMessageReceived(sender, topic, playerMessage, partition, offset);
         }
         catch (Exception e)
