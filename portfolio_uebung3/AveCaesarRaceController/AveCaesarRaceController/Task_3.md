@@ -1,20 +1,24 @@
 ﻿# Änderungen in der Software
 
-## 1. Anforderungen
+## 1. Neue Anforderungen
 Neben den bereits bestehenden Anforderungen wird **eine zusätzliche Einschränkung** eingeführt:
 
-1. **Speichern von PlayerToken pro Segment**:
-    - Jedes **TrackSegment** speichert eine Liste aller aktuellen Spieler (Objekte vom Typ `PlayerToken`).
-    - Neue Eigenschaft `MaxPlayers`:
-        - **Start-Goal-Segmente** können unbegrenzt viele Spieler speichern (`MaxPlayers = int.MaxValue`).
-        - Alle anderen Segment-Typen (z. B. `Caesar`, `Bottleneck`, `Normal`) speichern nur **1 Spieler gleichzeitig** (`MaxPlayers = 1`).
+1. **Segmente haben eine maximale Anzahl von Spielern**:
+    - Zur Verursachung von Engpässen und Wettbewerbssituationen sollen die Segmente eine **maximale Anzahl von Spielern** aufnehmen können.
+    - Dadurch wird die Spielerbewegung realistischer und die Interaktionen zwischen den Spielern intensiviert.
+    - **Start-Goal-Segmente** können unbegrenzt viele Spieler speichern (`MaxPlayers = int.MaxValue`).
+    - Alle anderen Segment-Typen (z. B. `Caesar`, `Bottleneck`, `Normal`) speichern nur **1 Spieler gleichzeitig** (`MaxPlayers = 1`).
+
+2. **Speichern von PlayerToken pro Segment**:
+    - Segmente registrieren Spieler, wenn sie das Segment betreten,
+    - Segmenten entfernen Spieler, wenn sie das Segment verlassen.
+    - Die registrierten Spieler werden in einer Liste von PlayerToken gespeichert
     - Das Hinzufügen eines Spielers zum Segment ist nur möglich, wenn die Segmentkapazität (`MaxPlayers`) noch nicht überschritten ist.
 
-2. **Bedingungen für Segment-Übergang**:
+3. **Spieler-Bewegung bzw. Segment-Übergang**:
     - Spieler dürfen nur dann zu einem Segment wechseln, wenn Platz verfügbar ist.
     - Beim Betreten eines Segments wird der Spieler zur Liste des Segments hinzugefügt.
     - Beim Verlassen eines Segments wird der Spieler aus der Liste entfernt.
-
 ---
 
 ## 2. Änderungen und betroffene Klassen
@@ -37,7 +41,6 @@ Neben den bereits bestehenden Anforderungen wird **eine zusätzliche Einschränk
        public string type { get; set; }
        public int MaxPlayers { get; set; }
        public List<PlayerToken> CurrentPlayers { get; set; } = new List<PlayerToken>();
-
        public List<string> nextSegments { get; set; }
    }
    ```
@@ -49,8 +52,8 @@ Neben den bereits bestehenden Anforderungen wird **eine zusätzliche Einschränk
       {
           segmentId = startSegmentId,
           type = TrackSegment.TYPE_START_GOAL,
-          MaxPlayers = int.MaxValue, // Unbegrenzte Spieleranzahl
-          nextSegments = nextSegments
+          nextSegments = nextSegments,
+          MaxPlayers = int.MaxValue // Unbegrenzte Spieleranzahl
       };
       ```
     - **Nicht-Start-Goal-Segmente (z. B. Caesar, Bottleneck)**:
@@ -58,9 +61,9 @@ Neben den bereits bestehenden Anforderungen wird **eine zusätzliche Einschränk
       var caesarSegment = new TrackSegment
       {
           segmentId = $"caesar-segment-{t}-1",
-          type = TrackSegment.TYPE_CAESAR,
+          type = TrackSegment.TYPE_CAESAR
+          nextSegments = new List<string> { /* Weitere Segmente */ },
           MaxPlayers = 1, // Immer nur ein Spieler erlaubt
-          nextSegments = new List<string> { /* Weitere Segmente */ }
       };
       ```
 
